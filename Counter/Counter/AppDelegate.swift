@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let viewController: UIViewController = CountViewController()
         
         let window: UIWindow = UIWindow()
-        
+        window.rootViewController = viewController
+        window.makeKeyAndVisible()
+        self.window = window
         
         return true
     }
