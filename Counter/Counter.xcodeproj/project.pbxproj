@@ -17,6 +17,9 @@
 		5724FBA21FCF8245009349B8 /* CountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5724FBA11FCF8245009349B8 /* CountPresenter.swift */; };
 		5724FBA41FCF82FC009349B8 /* CountInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5724FBA31FCF82FC009349B8 /* CountInteractor.swift */; };
 		5724FBA81FCF93C2009349B8 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5724FBA71FCF93C2009349B8 /* Counter.swift */; };
+		57C8CFF31FD0C58700E92E7A /* ManagedCounter+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8CFF11FD0C58700E92E7A /* ManagedCounter+CoreDataClass.swift */; };
+		57C8CFF41FD0C58700E92E7A /* ManagedCounter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8CFF21FD0C58700E92E7A /* ManagedCounter+CoreDataProperties.swift */; };
+		57C8CFF61FD0C70C00E92E7A /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C8CFF51FD0C70C00E92E7A /* CoreData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		5724FBA11FCF8245009349B8 /* CountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountPresenter.swift; sourceTree = "<group>"; };
 		5724FBA31FCF82FC009349B8 /* CountInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountInteractor.swift; sourceTree = "<group>"; };
 		5724FBA71FCF93C2009349B8 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
+		57C8CFF11FD0C58700E92E7A /* ManagedCounter+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ManagedCounter+CoreDataClass.swift"; path = "/Users/andrewcopp/Developer/Counter/Counter/Counter/ManagedCounter+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		57C8CFF21FD0C58700E92E7A /* ManagedCounter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ManagedCounter+CoreDataProperties.swift"; path = "/Users/andrewcopp/Developer/Counter/Counter/Counter/ManagedCounter+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		57C8CFF51FD0C70C00E92E7A /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,9 @@
 				5724FBA11FCF8245009349B8 /* CountPresenter.swift */,
 				5724FBA31FCF82FC009349B8 /* CountInteractor.swift */,
 				5724FBA71FCF93C2009349B8 /* Counter.swift */,
+				57C8CFF11FD0C58700E92E7A /* ManagedCounter+CoreDataClass.swift */,
+				57C8CFF21FD0C58700E92E7A /* ManagedCounter+CoreDataProperties.swift */,
+				57C8CFF51FD0C70C00E92E7A /* CoreData.swift */,
 			);
 			path = Counter;
 			sourceTree = "<group>";
@@ -269,7 +278,10 @@
 			files = (
 				5724FBA21FCF8245009349B8 /* CountPresenter.swift in Sources */,
 				5724FBA41FCF82FC009349B8 /* CountInteractor.swift in Sources */,
+				57C8CFF41FD0C58700E92E7A /* ManagedCounter+CoreDataProperties.swift in Sources */,
 				5724FBA81FCF93C2009349B8 /* Counter.swift in Sources */,
+				57C8CFF61FD0C70C00E92E7A /* CoreData.swift in Sources */,
+				57C8CFF31FD0C58700E92E7A /* ManagedCounter+CoreDataClass.swift in Sources */,
 				5724FB9A1FCF7F0E009349B8 /* CountViewController.swift in Sources */,
 				5724FB691FCF7E5A009349B8 /* AppDelegate.swift in Sources */,
 				5724FB711FCF7E5A009349B8 /* Counter.xcdatamodeld in Sources */,

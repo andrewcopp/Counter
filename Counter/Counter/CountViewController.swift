@@ -24,6 +24,11 @@ class CountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.configureView()
+        self.presenter.viewCreated()
+    }
+    
+    func configureView() {
         self.view.backgroundColor = UIColor.white
         
         let plusButton: UIButton = UIButton()
@@ -144,7 +149,6 @@ class CountViewController: UIViewController {
                                                    multiplier: 1.0/1.0,
                                                    constant: 44.0))
         self.presenter.label = label
-        
     }
         
 }

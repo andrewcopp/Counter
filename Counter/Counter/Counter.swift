@@ -20,6 +20,10 @@ struct Counter {
         self.count = count
     }
     
+    init(managedCounter: ManagedCounter) {
+        self.count = Int(managedCounter.count)
+    }
+    
     mutating func increment() {
         self.count = self.count + 1
     }

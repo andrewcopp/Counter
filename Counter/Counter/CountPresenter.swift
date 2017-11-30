@@ -19,6 +19,10 @@ class CountPresenter: NSObject {
         self.interactor = interactor
     }
     
+    func viewCreated() {
+        self.label.text = "\(self.interactor.counter.count)"
+    }
+    
     @objc func plusButtonPressed(sender: UIButton) {
         self.interactor.increment() { count in
             self.label.text = "\(count)"
