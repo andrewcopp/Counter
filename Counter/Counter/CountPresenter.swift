@@ -16,4 +16,12 @@ class CountPresenter: NSObject {
         self.interactor = interactor
     }
     
+    func plusButtonPressed(sender: UIButton) {
+        
+    }
+    
+    func minusButtonPressed(sender: UIButton) {
+        
+    }
+    
 }

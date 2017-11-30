@@ -12,6 +12,8 @@ class CountViewController: UIViewController {
 
     let presenter: CountPresenter
     
+    var label: UILabel!
+    
     init(presenter: CountPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -21,4 +23,127 @@ class CountViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor.white
+        
+        let plusButton: UIButton = UIButton()
+        plusButton.translatesAutoresizingMaskIntoConstraints = false
+        plusButton.setTitle("+", for: UIControlState.normal)
+        plusButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        plusButton.backgroundColor = UIColor.green
+        self.view.addSubview(plusButton)
+        
+        self.view.addConstraint(NSLayoutConstraint(item: plusButton,
+                                                   attribute: NSLayoutAttribute.width,
+                                                   relatedBy: NSLayoutRelation.equal,
+                                                   toItem: self.view,
+                                                   attribute: NSLayoutAttribute.width,
+                                                   multiplier: 1.0/3.0,
+                                                   constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: plusButton,
+                                                   attribute: NSLayoutAttribute.height,
+                                                   relatedBy: NSLayoutRelation.equal,
+                                                   toItem: plusButton,
+                                                   attribute: NSLayoutAttribute.width,
+                                                   multiplier: 1.0/1.0,
+                                                   constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: plusButton,
+                                                   attribute: NSLayoutAttribute.centerX,
+                                                   relatedBy: NSLayoutRelation.equal,
+                                                   toItem: self.view,
+                                                   attribute: NSLayoutAttribute.centerX,
+                                                   multiplier: 1.0/1.0,
+                                                   constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: plusButton,
+                                                   attribute: NSLayoutAttribute.bottom,
+                                                   relatedBy: NSLayoutRelation.equal,
+                                                   toItem: self.view,
+                                                   attribute: NSLayoutAttribute.bottom,
+                                                   multiplier: 1.0/1.0,
+                                                   constant: -44.0))
+        
+        plusButton.addTarget(self.presenter,
+                             action: #selector(CountPresenter.plusButtonPressed(sender:)),
+                             for: UIControlEvents.touchUpInside)
+        
+        let minusButton: UIButton = UIButton()
+        minusButton.translatesAutoresizingMaskIntoConstraints = false
+        minusButton.setTitle("-", for: UIControlState.normal)
+        minusButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        self.view.addSubview(minusButton)
+        
+        self.view.addConstraint(NSLayoutConstraint(item: minusButton,
+                                                   attribute: NSLayoutAttribute.left,
+                                                   relatedBy: NSLayoutRelation.equal,
+                                                   toItem: plusButton,
+                                                   attribute: NSLayoutAttribute.left,
+                                                   multiplier: 1.0/4.0,
+                                                   constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: minusButton,
+                                                   attribute: NSLayoutAttribute.right,
+                                                   relatedBy: NSLayoutRelation.equal,
+                                                   toItem: plusButton,
+                                                   attribute: NSLayoutAttribute.left,
+                                                   multiplier: 3.0/4.0,
+                                                   constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: minusButton,
+                                                   attribute: NSLayoutAttribute.centerY,
+                                                   relatedBy: NSLayoutRelation.equal,
+                                                   toItem: plusButton,
+                                                   attribute: NSLayoutAttribute.centerY,
+                                                   multiplier: 1.0/1.0,
+                                                   constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: minusButton,
+                                                   attribute: NSLayoutAttribute.height,
+                                                   relatedBy: NSLayoutRelation.equal,
+                                                   toItem: minusButton,
+                                                   attribute: NSLayoutAttribute.width,
+                                                   multiplier: 1.0/1.0,
+                                                   constant: 0.0))
+        
+        minusButton.addTarget(self.presenter,
+                              action: #selector(CountPresenter.minusButtonPressed(sender:)),
+                              for: UIControlEvents.touchUpInside)
+        
+        let label: UILabel = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "0"
+        label.textColor = UIColor.black
+        label.textAlignment = NSTextAlignment.center
+        self.view.addSubview(label)
+        
+        self.view.addConstraint(NSLayoutConstraint(item: label,
+                                                   attribute: NSLayoutAttribute.width,
+                                                   relatedBy: NSLayoutRelation.equal,
+                                                   toItem: self.view,
+                                                   attribute: NSLayoutAttribute.width,
+                                                   multiplier: 1.0/2.0,
+                                                   constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: label,
+                                                   attribute: NSLayoutAttribute.height,
+                                                   relatedBy: NSLayoutRelation.equal,
+                                                   toItem: label,
+                                                   attribute: NSLayoutAttribute.width,
+                                                   multiplier: 1.0/1.0,
+                                                   constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: label,
+                                                   attribute: NSLayoutAttribute.centerX,
+                                                   relatedBy: NSLayoutRelation.equal,
+                                                   toItem: self.view,
+                                                   attribute: NSLayoutAttribute.centerX,
+                                                   multiplier: 1.0/1.0,
+                                                   constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: label,
+                                                   attribute: NSLayoutAttribute.top,
+                                                   relatedBy: NSLayoutRelation.equal,
+                                                   toItem: label,
+                                                   attribute: NSLayoutAttribute.top,
+                                                   multiplier: 1.0/1.0,
+                                                   constant: 44.0))
+        self.label = label
+        
+    }
+        
 }
