@@ -11,9 +11,7 @@ import UIKit
 class CountViewController: UIViewController {
 
     let presenter: CountPresenter
-    
-    var label: UILabel!
-    
+        
     init(presenter: CountPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -142,7 +140,7 @@ class CountViewController: UIViewController {
                                                    attribute: NSLayoutAttribute.top,
                                                    multiplier: 1.0/1.0,
                                                    constant: 44.0))
-        self.label = label
+        self.presenter.label = label
         
     }
         

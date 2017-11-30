@@ -7,21 +7,30 @@
 //
 
 import Foundation
+import UIKit
 
 class CountPresenter: NSObject {
     
     let interactor: CountInteractor
     
+    var label: UILabel!
+    
     init(interactor: CountInteractor) {
         self.interactor = interactor
     }
     
-    func plusButtonPressed(sender: UIButton) {
-        
+    @objc func plusButtonPressed(sender: UIButton) {
+        self.interactor.increment() { count in
+            self.label.text = "\(count)"
+        }
     }
     
-    func minusButtonPressed(sender: UIButton) {
-        
+    @objc func minusButtonPressed(sender: UIButton) {
+        self.interactor.decrement(success: { count in
+            self.label.text = "\(count)"
+        }, failure: { error in
+            
+        })
     }
     
 }

@@ -10,6 +10,16 @@ import Foundation
 
 class CountInteractor {
     
+    var counter: Counter = Counter()
     
+    func increment(completion: (Int) -> ()) {
+        counter.increment()
+        completion(counter.count)
+    }
+    
+    func decrement(success: (Int) -> (), failure: (Error) -> ()) {
+        counter.decrement()
+        success(counter.count)
+    }
     
 }
