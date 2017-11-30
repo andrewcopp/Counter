@@ -10,7 +10,10 @@ import UIKit
 
 class CountViewController: UIViewController {
 
-    init() {
+    let presenter: CountPresenter
+    
+    init(presenter: CountPresenter) {
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
     

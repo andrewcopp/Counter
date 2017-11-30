@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        let viewController: UIViewController = CountViewController()
+        let interactor: CountInteractor = CountInteractor()
+        let presenter: CountPresenter = CountPresenter(interactor: interactor)
+        let viewController: UIViewController = CountViewController(presenter: presenter)
         
         let window: UIWindow = UIWindow()
         window.rootViewController = viewController
