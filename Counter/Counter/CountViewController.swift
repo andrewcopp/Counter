@@ -30,6 +30,7 @@ class CountViewController: UIViewController {
         plusButton.translatesAutoresizingMaskIntoConstraints = false
         plusButton.setTitle("+", for: UIControlState.normal)
         plusButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        plusButton.titleLabel?.font = plusButton.titleLabel?.font.withSize(100.0)
         plusButton.backgroundColor = UIColor.green
         self.view.addSubview(plusButton)
         
@@ -70,6 +71,7 @@ class CountViewController: UIViewController {
         minusButton.translatesAutoresizingMaskIntoConstraints = false
         minusButton.setTitle("-", for: UIControlState.normal)
         minusButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        minusButton.titleLabel?.font = minusButton.titleLabel?.font.withSize(50.0)
         self.view.addSubview(minusButton)
         
         self.view.addConstraint(NSLayoutConstraint(item: minusButton,
@@ -110,6 +112,7 @@ class CountViewController: UIViewController {
         label.text = "0"
         label.textColor = UIColor.black
         label.textAlignment = NSTextAlignment.center
+        label.font = label.font.withSize(100.0)
         self.view.addSubview(label)
         
         self.view.addConstraint(NSLayoutConstraint(item: label,
@@ -136,7 +139,7 @@ class CountViewController: UIViewController {
         self.view.addConstraint(NSLayoutConstraint(item: label,
                                                    attribute: NSLayoutAttribute.top,
                                                    relatedBy: NSLayoutRelation.equal,
-                                                   toItem: label,
+                                                   toItem: self.view,
                                                    attribute: NSLayoutAttribute.top,
                                                    multiplier: 1.0/1.0,
                                                    constant: 44.0))
