@@ -29,7 +29,10 @@ class CountPresenter: NSObject {
         self.interactor.decrement(success: { count in
             self.label.text = "\(count)"
         }, failure: { error in
-            
+            self.label.layer.backgroundColor = UIColor.red.cgColor
+            UIView.animate(withDuration: 0.5) {
+                self.label.layer.backgroundColor = UIColor.white.cgColor
+            }
         })
     }
     

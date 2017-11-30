@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum CounterError: Error {
+    case decrementZero
+}
+
 struct Counter {
     
     var count: Int
@@ -20,8 +24,13 @@ struct Counter {
         self.count = self.count + 1
     }
     
-    mutating func decrement() {
+    mutating func decrement() -> Error? {
+        guard self.count > 0 else {
+            return CounterError.decrementZero
+        }
+        
         self.count = self.count - 1
+        return nil
     }
     
 }

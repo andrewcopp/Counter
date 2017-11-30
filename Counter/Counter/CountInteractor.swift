@@ -13,13 +13,16 @@ class CountInteractor {
     var counter: Counter = Counter()
     
     func increment(completion: (Int) -> ()) {
-        counter.increment()
-        completion(counter.count)
+        self.counter.increment()
+        completion(self.counter.count)
     }
     
     func decrement(success: (Int) -> (), failure: (Error) -> ()) {
-        counter.decrement()
-        success(counter.count)
+        if let error = self.counter.decrement() {
+            failure(error)
+        } else {
+            success(self.counter.count)
+        }
     }
     
 }
