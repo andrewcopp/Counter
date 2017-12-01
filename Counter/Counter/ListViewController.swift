@@ -42,6 +42,9 @@ class ListViewController: UIViewController {
         tableView.delegate = self
         self.presenter.tableView = tableView
         
+        let addButton: UIBarButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        self.navigationItem.rightBarButtonItem = addButton
+        
         self.presenter.viewCreated()
     }
     
