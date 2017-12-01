@@ -19,10 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let coreData: CoreData = CoreData()
         
-        let interactor: CountInteractor = CountInteractor(coreData: coreData)
-        let presenter: CountPresenter = CountPresenter(interactor: interactor)
-        let viewController: UIViewController = CountViewController(presenter: presenter)
-        let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
+        let countInteractor: CountInteractor = CountInteractor(coreData: coreData)
+        let countPresenter: CountPresenter = CountPresenter(interactor: countInteractor)
+        let countViewController: CountViewController = CountViewController(presenter: countPresenter)
+        
+        let listInteractor: ListInteractor = ListInteractor(coreData: coreData)
+        let listPresenter: ListPresenter = ListPresenter(interactor: listInteractor)
+        let listViewController: ListViewController = ListViewController(presenter: listPresenter)
+        
+        let navigationController: UINavigationController = UINavigationController(rootViewController: listViewController)
         
         let window: UIWindow = UIWindow()
         window.rootViewController = navigationController
