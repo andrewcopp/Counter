@@ -2,7 +2,7 @@
 //  ManagedCounter+CoreDataProperties.swift
 //  
 //
-//  Created by Andrew Copp on 11/30/17.
+//  Created by Andrew Copp on 12/1/17.
 //
 //
 
@@ -17,5 +17,6 @@ extension ManagedCounter {
     }
 
     @NSManaged public var count: Int16
+    @NSManaged public var title: String?
 
 }

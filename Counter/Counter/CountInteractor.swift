@@ -57,4 +57,10 @@ class CountInteractor {
         }
     }
     
+    func rename(title: String) {
+        self.counter.title = title
+        let managedCounter: ManagedCounter = self.managedCounter()
+        managedCounter.title = title
+    }
+    
 }

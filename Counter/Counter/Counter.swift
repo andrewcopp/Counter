@@ -15,13 +15,16 @@ enum CounterError: Error {
 struct Counter {
     
     var count: Int
+    var title: String
     
     init(count: Int = 0) {
         self.count = count
+        self.title = ""
     }
     
     init(managedCounter: ManagedCounter) {
         self.count = Int(managedCounter.count)
+        self.title = managedCounter.title ?? ""
     }
     
     mutating func increment() {

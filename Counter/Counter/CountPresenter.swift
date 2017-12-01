@@ -22,6 +22,7 @@ class CountPresenter: NSObject {
     
     func viewCreated() {
         self.label.text = "\(self.interactor.counter.count)"
+        self.textField.text = self.interactor.counter.title
         
         self.textField.becomeFirstResponder()
     }
@@ -50,7 +51,8 @@ class CountPresenter: NSObject {
 extension CountPresenter: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        self.interactor.rename(title: self.textField.text ?? "")
+        self.textField.resignFirstResponder()
         return true
     }
     
