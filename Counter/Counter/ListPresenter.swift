@@ -42,11 +42,3 @@ extension ListPresenter: UITableViewDataSource {
     }
     
 }
-
-extension ListPresenter: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //
-    }
-    
-}

@@ -9,11 +9,14 @@
 import UIKit
 
 class ListViewController: UIViewController {
-
+    
+    let countFactory: CountFactory
+    
     let presenter: ListPresenter
     
-    init(presenter: ListPresenter) {
+    init(presenter: ListPresenter, countFactory: CountFactory) {
         self.presenter = presenter
+        self.countFactory = countFactory
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -36,12 +39,19 @@ class ListViewController: UIViewController {
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tableView]|", options: options, metrics: metrics, views: views))
         
         tableView.dataSource = self.presenter
-        tableView.delegate = self.presenter
+        tableView.delegate = self
         self.presenter.tableView = tableView
         
         self.presenter.viewCreated()
     }
-
     
+}
+
+extension ListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let countViewController: CountViewController = self.countFactory.countViewController()
+        self.navigationController?.pushViewController(countViewController, animated: true)
+    }
     
 }
