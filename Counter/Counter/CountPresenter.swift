@@ -14,6 +14,7 @@ class CountPresenter: NSObject {
     let interactor: CountInteractor
     
     var label: UILabel!
+    var textField: UITextField!
     
     init(interactor: CountInteractor) {
         self.interactor = interactor
@@ -21,6 +22,8 @@ class CountPresenter: NSObject {
     
     func viewCreated() {
         self.label.text = "\(self.interactor.counter.count)"
+        
+        self.textField.becomeFirstResponder()
     }
     
     @objc func plusButtonPressed(sender: UIButton) {
@@ -40,6 +43,15 @@ class CountPresenter: NSObject {
                 self.label.textColor = UIColor.black
             })
         })
+    }
+    
+}
+
+extension CountPresenter: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 }

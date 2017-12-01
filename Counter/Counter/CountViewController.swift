@@ -149,6 +149,12 @@ class CountViewController: UIViewController {
                                                    multiplier: 1.0/1.0,
                                                    constant: 44.0))
         self.presenter.label = label
+        
+        let textField: UITextField = UITextField(frame: CGRect(x: 0.0, y: 0.0, width: 200.0, height: 21.0))
+        textField.textAlignment = NSTextAlignment.center
+        textField.delegate = self.presenter
+        self.navigationItem.titleView = textField
+        self.presenter.textField = textField
     }
         
 }

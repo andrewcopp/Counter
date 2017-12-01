@@ -22,9 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let interactor: CountInteractor = CountInteractor(coreData: coreData)
         let presenter: CountPresenter = CountPresenter(interactor: interactor)
         let viewController: UIViewController = CountViewController(presenter: presenter)
+        let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
         
         let window: UIWindow = UIWindow()
-        window.rootViewController = viewController
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
         
