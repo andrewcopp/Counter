@@ -20,7 +20,7 @@ class ListPresenter: NSObject {
     }
     
     func viewCreated() {
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ListCell")
+        self.tableView.register(ListTableViewCell.self, forCellReuseIdentifier: "ListCell")
         
         self.interactor.synchronize()
     }
@@ -38,8 +38,11 @@ extension ListPresenter: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath)
-        cell.textLabel?.text = self.interactor.counters()[indexPath.row].title
+        let cell: ListTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListTableViewCell
+        let counter: Counter = self.interactor.counters()[indexPath.row]
+        cell.textLabel?.text = counter.title
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        cell.countLabel.text = "\(counter.count)"
         return cell
     }
     
