@@ -65,6 +65,7 @@ class CountInteractor {
         }
         
         managedCounter.identifier = Int16(i)
+        managedCounter.title = "Unnamed Counter"
         
         self.coreData.saveContext()
         NotificationCenter.default.post(name: Notification.Name.init("CounterCountersDidUpdate"), object: nil, userInfo: nil)
