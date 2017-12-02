@@ -20,6 +20,10 @@ class ListInteractor {
     }
     
     func synchronize() {
+        if UserDefaults.standard.bool(forKey: "CounterSubsequentApplicationLaunch") {
+            return
+        }
+        
         self.http.indexCounter { counters in
             let managedCounters: [ManagedCounter] = self.managedCounters()
             counters.forEach() { counter in
@@ -31,11 +35,15 @@ class ListInteractor {
                 }
             }
             
+            UserDefaults.standard.set(true, forKey: "CounterSubsequentApplicationLaunch")
+            
             self.coreData.saveContext()
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: Notification.Name.init("CounterCountersDidUpdate"), object: nil, userInfo: nil)
             }
         }
+        
+        
     }
     
     func counters() -> [Counter] {
