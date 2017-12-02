@@ -43,11 +43,16 @@ class CountPresenter: NSObject {
         self.interactor.decrement(success: { count in
             self.label.text = "\(count)"
         }, failure: { error in
-            self.label.textColor = UIColor.red
-            UIView.transition(with: self.label, duration: 0.35, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
+            self.label.textColor = UIColor.black
+            UIView.transition(with: self.label, duration: 0.0, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
                 self.label.textColor = UIColor.black
             }, completion: { finished in
-                self.label.textColor = UIColor.black
+                self.label.textColor = UIColor.red
+                UIView.transition(with: self.label, duration: 0.35, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
+                    self.label.textColor = UIColor.red
+                }, completion: { finished in
+                    self.label.textColor = UIColor.black
+                })
             })
         })
     }
