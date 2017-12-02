@@ -18,10 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         let coreData: CoreData = CoreData()
+        let http: HTTP = HTTP()
         
         let countFactory: CountFactory = CountFactory(coreData: coreData)
         
-        let listInteractor: ListInteractor = ListInteractor(coreData: coreData)
+        let listInteractor: ListInteractor = ListInteractor(coreData: coreData, http: http)
         let listPresenter: ListPresenter = ListPresenter(interactor: listInteractor)
         let listViewController: ListViewController = ListViewController(presenter: listPresenter, countFactory: countFactory)
         

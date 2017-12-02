@@ -18,10 +18,22 @@ struct Counter {
     var title: String
     var identifier: Int
     
-    init(count: Int = 0) {
+    init?(json: [String : AnyObject]) {
+        guard let identifier: Int = json["id"] as? Int else {
+            return nil
+        }
+        
+        guard let title: String = json["name"] as? String else {
+            return nil
+        }
+        
+        guard let count: Int = json["count"] as? Int else {
+            return nil
+        }
+        
         self.count = count
-        self.title = ""
-        self.identifier = 0
+        self.title = title
+        self.identifier = identifier
     }
     
     init(managedCounter: ManagedCounter) {

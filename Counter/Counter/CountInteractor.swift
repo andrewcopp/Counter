@@ -47,7 +47,7 @@ class CountInteractor {
         
         let managedCounters: [ManagedCounter]
         do {
-            managedCounters = try coreData.persistentContainer.viewContext.fetch(request)
+            managedCounters = try self.coreData.persistentContainer.viewContext.fetch(request)
         } catch {
             managedCounters = []
         }

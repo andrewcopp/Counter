@@ -12,17 +12,38 @@ import CoreData
 class ListInteractor {
     
     let coreData: CoreData
+    let http: HTTP
     
-    init(coreData: CoreData) {
+    init(coreData: CoreData, http: HTTP) {
         self.coreData = coreData
+        self.http = http
+    }
+    
+    func synchronize() {
+        self.http.indexCounter { counters in
+            let managedCounters: [ManagedCounter] = self.managedCounters()
+            counters.forEach() { counter in
+                if !managedCounters.contains(where: { $0.identifier == counter.identifier}) {
+                    let managedCounter: ManagedCounter = NSEntityDescription.insertNewObject(forEntityName: "Counter", into: self.coreData.persistentContainer.viewContext) as! ManagedCounter
+                    managedCounter.count = Int16(counter.count)
+                    managedCounter.title = counter.title
+                    managedCounter.identifier = Int16(counter.identifier)
+                }
+            }
+            
+            self.coreData.saveContext()
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: Notification.Name.init("CounterCountersDidUpdate"), object: nil, userInfo: nil)
+            }
+        }
     }
     
     func counters() -> [Counter] {
-        let managedCounters: [ManagedCounter] = self.managedCounter()
+        let managedCounters: [ManagedCounter] = self.managedCounters()
         return managedCounters.map({ Counter(managedCounter: $0) })
     }
     
-    func managedCounter() -> [ManagedCounter] {
+    func managedCounters() -> [ManagedCounter] {
         let request: NSFetchRequest = ManagedCounter.fetchRequest()
         let managedCounters: [ManagedCounter]
         do {

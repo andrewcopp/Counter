@@ -21,6 +21,8 @@ class ListPresenter: NSObject {
     
     func viewCreated() {
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ListCell")
+        
+        self.interactor.synchronize()
     }
     
 }
