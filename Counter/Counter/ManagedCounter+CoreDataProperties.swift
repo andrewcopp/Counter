@@ -18,5 +18,6 @@ extension ManagedCounter {
 
     @NSManaged public var count: Int16
     @NSManaged public var title: String?
+    @NSManaged public var identifier: Int16
 
 }

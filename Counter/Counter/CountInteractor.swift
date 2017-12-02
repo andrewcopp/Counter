@@ -11,18 +11,38 @@ import CoreData
 
 class CountInteractor {
     
+    var identifier: Int?
     let coreData: CoreData
     
     lazy var counter: Counter = {
         return Counter(managedCounter: self.managedCounter())
     }()
     
-    init(coreData: CoreData) {
+    init(identifier: Int?, coreData: CoreData) {
+        self.identifier = identifier
         self.coreData = coreData
     }
     
     func managedCounter() -> ManagedCounter {
+        let managedCounters: [ManagedCounter] = self.managedCounters()
+        
+        let managedCounter: ManagedCounter
+        if let identifier: Int = self.identifier {
+            if let index = managedCounters.index(where: { Int($0.identifier) == identifier }) {
+                managedCounter = managedCounters[index]
+            } else {
+                managedCounter = createManagedCounter()
+            }
+        } else {
+            managedCounter = createManagedCounter()
+        }
+        
+        return managedCounter
+    }
+    
+    func managedCounters() -> [ManagedCounter] {
         let request: NSFetchRequest = ManagedCounter.fetchRequest()
+        
         let managedCounters: [ManagedCounter]
         do {
             managedCounters = try coreData.persistentContainer.viewContext.fetch(request)
@@ -30,12 +50,19 @@ class CountInteractor {
             managedCounters = []
         }
         
-        let managedCounter: ManagedCounter
-        if managedCounters.count > 0 {
-            managedCounter = managedCounters[0]
-        } else {
-            managedCounter = NSEntityDescription.insertNewObject(forEntityName: "Counter", into: coreData.persistentContainer.viewContext) as! ManagedCounter
+        return managedCounters
+    }
+    
+    func createManagedCounter() -> ManagedCounter {
+        let managedCounter: ManagedCounter = NSEntityDescription.insertNewObject(forEntityName: "Counter", into: coreData.persistentContainer.viewContext) as! ManagedCounter
+        let identifiers: [Int] = self.managedCounters().map({ Int($0.identifier) })
+        
+        var i = arc4random_uniform(1000)
+        while !identifiers.contains(Int(i)) {
+            i = arc4random_uniform(1000)
         }
+        
+        managedCounter.identifier = Int16(i)
         
         return managedCounter
     }

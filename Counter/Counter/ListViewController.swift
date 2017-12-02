@@ -53,7 +53,8 @@ class ListViewController: UIViewController {
 extension ListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let countViewController: CountViewController = self.countFactory.countViewController()
+        let counter: Counter = self.presenter.interactor.counters()[indexPath.row]
+        let countViewController: CountViewController = self.countFactory.countViewController(identifier: counter.identifier)
         self.navigationController?.pushViewController(countViewController, animated: true)
     }
     

@@ -16,8 +16,8 @@ class CountFactory {
         self.coreData = coreData
     }
     
-    func countViewController() -> CountViewController {
-        let countInteractor: CountInteractor = CountInteractor(coreData: self.coreData)
+    func countViewController(identifier: Int?) -> CountViewController {
+        let countInteractor: CountInteractor = CountInteractor(identifier: identifier, coreData: self.coreData)
         let countPresenter: CountPresenter = CountPresenter(interactor: countInteractor)
         let countViewController: CountViewController = CountViewController(presenter: countPresenter)
         return countViewController

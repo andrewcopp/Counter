@@ -16,15 +16,18 @@ struct Counter {
     
     var count: Int
     var title: String
+    var identifier: Int
     
     init(count: Int = 0) {
         self.count = count
         self.title = ""
+        self.identifier = 0
     }
     
     init(managedCounter: ManagedCounter) {
         self.count = Int(managedCounter.count)
         self.title = managedCounter.title ?? ""
+        self.identifier = Int(managedCounter.identifier)
     }
     
     mutating func increment() {
