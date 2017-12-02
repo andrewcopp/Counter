@@ -23,8 +23,14 @@ class CountPresenter: NSObject {
     func viewCreated() {
         self.label.text = "\(self.interactor.counter.count)"
         self.textField.text = self.interactor.counter.title
-        
+    }
+    
+    func viewAppeared() {
         self.textField.becomeFirstResponder()
+    }
+    
+    func viewDisappearing() {
+        self.textField.resignFirstResponder()
     }
     
     @objc func plusButtonPressed(sender: UIButton) {

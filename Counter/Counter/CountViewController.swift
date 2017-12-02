@@ -28,6 +28,18 @@ class CountViewController: UIViewController {
         self.presenter.viewCreated()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.presenter.viewAppeared()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.presenter.viewDisappearing()
+    }
+    
     func configureView() {
         self.view.backgroundColor = UIColor.white
         
