@@ -18,10 +18,16 @@ class ListViewController: UIViewController {
         self.presenter = presenter
         self.countFactory = countFactory
         super.init(nibName: nil, bundle: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ListViewController.countersDidUpdate(notification:)), name: Notification.Name.init("CounterCountersDidUpdate"), object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.init("CounterCountersDidUpdate"), object: nil)
     }
     
     override func viewDidLoad() {
@@ -42,10 +48,19 @@ class ListViewController: UIViewController {
         tableView.delegate = self
         self.presenter.tableView = tableView
         
-        let addButton: UIBarButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        let addButton: UIBarButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ListViewController.addButtonPressed(sender:)))
         self.navigationItem.rightBarButtonItem = addButton
         
         self.presenter.viewCreated()
+    }
+    
+    @objc func countersDidUpdate(notification: Notification) {
+        self.presenter.tableView.reloadData()
+    }
+    
+    @objc func addButtonPressed(sender: UIBarButtonItem) {
+        let countViewController: CountViewController = self.countFactory.countViewController(identifier: nil)
+        self.navigationController?.pushViewController(countViewController, animated: true)
     }
     
 }

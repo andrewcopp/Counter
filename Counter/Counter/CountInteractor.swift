@@ -32,9 +32,11 @@ class CountInteractor {
                 managedCounter = managedCounters[index]
             } else {
                 managedCounter = createManagedCounter()
+                self.identifier = Int(managedCounter.identifier)
             }
         } else {
             managedCounter = createManagedCounter()
+            self.identifier = Int(managedCounter.identifier)
         }
         
         return managedCounter
@@ -58,11 +60,14 @@ class CountInteractor {
         let identifiers: [Int] = self.managedCounters().map({ Int($0.identifier) })
         
         var i = arc4random_uniform(1000)
-        while !identifiers.contains(Int(i)) {
+        while identifiers.contains(Int(i)) {
             i = arc4random_uniform(1000)
         }
         
         managedCounter.identifier = Int16(i)
+        
+        self.coreData.saveContext()
+        NotificationCenter.default.post(name: Notification.Name.init("CounterCountersDidUpdate"), object: nil, userInfo: nil)
         
         return managedCounter
     }
@@ -72,6 +77,8 @@ class CountInteractor {
         let managedCounter: ManagedCounter = self.managedCounter()
         managedCounter.count = Int16(self.counter.count)
         completion(self.counter.count)
+        self.coreData.saveContext()
+        NotificationCenter.default.post(name: Notification.Name.init("CounterCountersDidUpdate"), object: nil, userInfo: nil)
     }
     
     func decrement(success: (Int) -> (), failure: (Error) -> ()) {
@@ -81,6 +88,8 @@ class CountInteractor {
             let managedCounter: ManagedCounter = self.managedCounter()
             managedCounter.count = Int16(self.counter.count)
             success(self.counter.count)
+            self.coreData.saveContext()
+            NotificationCenter.default.post(name: Notification.Name.init("CounterCountersDidUpdate"), object: nil, userInfo: nil)
         }
     }
     
@@ -88,6 +97,8 @@ class CountInteractor {
         self.counter.title = title
         let managedCounter: ManagedCounter = self.managedCounter()
         managedCounter.title = title
+        self.coreData.saveContext()
+        NotificationCenter.default.post(name: Notification.Name.init("CounterCountersDidUpdate"), object: nil, userInfo: nil)
     }
     
 }
